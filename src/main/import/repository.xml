@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
+    <modules jcr:primaryType="jnt:modules">
+        <socialpublishing j:dependencies="bootstrap3-components default"
+                        j:modulePriority="0"
+                        j:moduleType="module"
+                        j:title="socialpublishing"
+                        jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                        jcr:primaryType="jnt:module">
+                
+                <portlets jcr:primaryType="jnt:portletFolder"/>
+                <files jcr:primaryType="jnt:folder"/>
+                <contents jcr:primaryType="jnt:contentFolder"/>
+                <templates j:rootTemplatePath="/base" jcr:primaryType="jnt:templatesFolder">
+                    <files jcr:primaryType="jnt:folder"/>
+                    <contents jcr:primaryType="jnt:contentFolder"/>
+                    <news-social-template j:applyOn="jnt:news"
+                                  j:defaultTemplate="true"
+                                  j:hiddenTemplate="false"
+                                  j:priority="200"
+                                  jcr:primaryType="jnt:contentTemplate">
+                        <j:translation_en jcr:language="en"
+                                 jcr:mixinTypes="mix:title"
+                                 jcr:primaryType="jnt:translation"
+                                 jcr:title="news-social-template"/>
+                        <pagecontent jcr:primaryType="jnt:contentList">
+                            <main-resource-display j:mainResourceView="medium" jcr:primaryType="jnt:mainResourceDisplay"/>
+                            <publication-button jcr:primaryType="jnt:publicationbutton"/>
+                        </pagecontent>
+                    </news-social-template>
+                    <site-settings-base j:view="siteSettings"
+                                jcr:mixinTypes="jmix:useUILocale"
+                                jcr:primaryType="jnt:template">
+                        <social-publication-management j:applyOn="jnt:virtualsite"
+                                              j:defaultTemplate="false"
+                                              j:hiddenTemplate="false"
+                                              jcr:primaryType="jnt:contentTemplate">
+                            <j:translation_en jcr:language="en"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="Social Publication Management"/>
+                            <pagecontent jcr:primaryType="jnt:contentList">
+                                <section--container--row--grid columnsType="customColumns"
+                                                    gridClasses="col-md-2, col-md-6, col-md-4"
+                                                    jcr:mixinTypes="bootstrap3mix:customColumns"
+                                                    jcr:primaryType="bootstrap3nt:columns">
+                                    <section--container--row--grid-main jcr:primaryType="jnt:contentList"/>
+                                    <section--container--row--grid-side jcr:primaryType="jnt:contentList"/>
+                                    <section--container--row--grid-extra jcr:primaryType="jnt:contentList"/>
+                                    <section--container--row--grid-side1 jcr:primaryType="jnt:contentList"/>
+                                    <section--container--row--grid-col1 jcr:primaryType="jnt:contentList">
+                                        <social-publication-area j:areaView="socialPublication" jcr:primaryType="jnt:area"/>
+                                    </section--container--row--grid-col1>
+                                    <section--container--row--grid-col2 jcr:primaryType="jnt:contentList">
+                                        <socialitemactions j:bindedComponent="/modules/socialpublishing/templates/site-settings-base/social-publication-management/pagecontent/section--container--row--grid/section--container--row--grid-col1/social-publication-area"
+                                              jcr:primaryType="jnt:socialItemActions"/>
+                                    </section--container--row--grid-col2>
+                                    <section--container--row--grid-col0 jcr:primaryType="jnt:contentList"/>
+                                </section--container--row--grid>
+                            </pagecontent>
+                        </social-publication-management>
+                    </site-settings-base>
+                </templates>
+                
+            </socialpublishing>
+    </modules>
+</content>

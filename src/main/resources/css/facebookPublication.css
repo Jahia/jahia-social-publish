@@ -1,0 +1,13 @@
+.itemSocialActions{
+    height: 55px;
+    text-align: left;
+
+}
+.itemSocialContent{
+    height: 45px;
+    border-bottom: 1px black solid;
+}
+
+.actionsList{
+    margin-top: 40px;
+}

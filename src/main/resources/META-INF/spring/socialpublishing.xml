@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean class="org.jahia.modules.socialpublishing.actions.FBPublishAction">
+        <property name="name" value="facebookPublish"/>
+    </bean>
+    <bean class="org.jahia.modules.socialpublishing.actions.FBDeleteAction">
+        <property name="name" value="facebookDelete"/>
+    </bean>
+    <bean class="org.jahia.modules.socialpublishing.actions.FBPublishAction">
+        <property name="name" value="facebookUpdate"/>
+        <property name="update" value="true"/>
+    </bean>
+</beans>
