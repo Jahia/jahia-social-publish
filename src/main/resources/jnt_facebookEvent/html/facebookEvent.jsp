@@ -17,29 +17,5 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<template:addResources type="css" resources="facebookPublication.css" />
 
-<c:set var="id" value="fbActions${currentNode.identifier}"/>
-
-<c:choose>
-    <c:when test="${not currentNode.properties['published'].boolean}">
-        <c:set var="hidePublishedButton" value="style='display: none;'"/>
-    </c:when>
-    <c:otherwise>
-        <c:set var="hideUnpublishedButton" value="style='display: none;'"/>
-    </c:otherwise>
-</c:choose>
-<div class="itemSocialActions" id="${id}">
-    <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
-        <fmt:message key="publish.facebook.button"/>
-    </button>
-
-    <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookUpdate.do'/>" class="facebookAction fbUpdate btn btn-default btn-u">
-        <fmt:message key="update.facebook.button"/>
-    </button>
-
-    <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
-        <fmt:message key="delete.facebook.button"/>
-    </button>
-</div>
-
+asdasd ${currentNode.displayableName}

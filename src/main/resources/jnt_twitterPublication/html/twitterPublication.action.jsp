@@ -17,7 +17,11 @@
 <%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
-<template:addResources type="css" resources="facebookPublication.css" />
+<template:addResources type="css" resources="twitterPublication.css" />
+<template:addResources type="javascript" resources="jquery.js"/>
+<c:if test="${currentNode.properties['image'] != null}">
+    <c:set var="imageClass" value="Img"/>
+</c:if>
 
 <c:set var="id" value="fbActions${currentNode.identifier}"/>
 
@@ -29,17 +33,13 @@
         <c:set var="hideUnpublishedButton" value="style='display: none;'"/>
     </c:otherwise>
 </c:choose>
-<div class="itemSocialActions" id="${id}">
-    <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
-        <fmt:message key="publish.facebook.button"/>
+<div class="twitterSocialActions${imageClass}" id="${id}">
+    <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
+        <fmt:message key="publish.twitter.button"/>
     </button>
 
-    <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookUpdate.do'/>" class="facebookAction fbUpdate btn btn-default btn-u">
-        <fmt:message key="update.facebook.button"/>
-    </button>
-
-    <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
-        <fmt:message key="delete.facebook.button"/>
+    <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
+        <fmt:message key="delete.twitter.button"/>
     </button>
 </div>
 

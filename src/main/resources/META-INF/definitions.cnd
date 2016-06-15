@@ -1,15 +1,47 @@
-<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 
 [jmix:socialPublishConfiguration] mixin
  extends = jnt:virtualsite
  itemtype = options
  - facebookToken (string)
+ - appID (string)
+ - appSecret (string,text[password])
 
- [jnt:facebookPublication] > jnt:content, jmix:droppableContent
+[jmix:TwittersocialPublishConfiguration] mixin
+ extends = jnt:virtualsite
+ itemtype = options
+ - twitterAPIKey (string)
+ - twitterAPISecret (string,text[password])
+ - twitterAccessToken (string)
+ - twitterAccessTokenSecret (string,text[password])
+
+[jnt:facebookPublication] > jnt:content, jmix:droppableContent
  - socialFacebookMessage (string)
  - contentReferenced (weakreference)
  - postId (string) hidden
- - published (boolean) = false hidden
+ - published (boolean) = 'false' hidden
 
- [jnt:socialItemActions] > jnt:content, jmix:bindedComponent, jmix:list, jmix:droppableContent
+[jnt:twitterPublication] > jnt:content, jmix:droppableContent
+ - postId (string) hidden
+ - published (boolean) = 'false' hidden
+ - messageType (string, choicelist[twitterInitializer,resourceBundle]) = 'nolink'
+
+[jmix:twitterMessageOnly] > jmix:templateMixin mixin
+ extends = jnt:twitterPublication
+ - image (weakreference, picker[type='image']) < 'jmix:image'
+ - socialTwitterMessage (string) < '^.{1,140}$'
+
+[jmix:twitterMessageWithLink] > jmix:templateMixin mixin
+ extends = jnt:twitterPublication
+ - image (weakreference, picker[type='image']) < 'jmix:image'
+ - contentReferenced (weakreference)
+ - socialTwitterMessage (string) < '^.{1,117}$'
+
+[jnt:socialItemActions] > jnt:content, jmix:bindedComponent, jmix:list, jmix:droppableContent
+
+[jnt:facebookConfiguration] > jnt:content, jmix:droppableContent
+
+[jmix:socialMarketingCampaign] mixin
+ extends = jnt:facebookPublication,jnt:twitterPublication
+ - campaingID (string)

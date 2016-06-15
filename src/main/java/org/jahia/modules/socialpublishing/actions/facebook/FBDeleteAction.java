@@ -1,4 +1,4 @@
-package org.jahia.modules.socialpublishing.actions;/**
+package org.jahia.modules.socialpublishing.actions.facebook;/**
  * Created by fabriceaissah on 5/13/16.
  */
 

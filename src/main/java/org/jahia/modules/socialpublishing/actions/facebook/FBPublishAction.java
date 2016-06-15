@@ -1,4 +1,4 @@
-package org.jahia.modules.socialpublishing.actions;/**
+package org.jahia.modules.socialpublishing.actions.facebook;/**
  * Created by fabriceaissah on 5/13/16.
  */
 
@@ -16,11 +16,13 @@ import org.jahia.services.render.RenderContext;
 import org.jahia.services.render.Resource;
 import org.jahia.services.render.URLGenerator;
 import org.jahia.services.render.URLResolver;
+import org.jahia.services.seo.urlrewrite.UrlRewriteService;
 import org.jahia.utils.Url;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,9 +32,12 @@ public class FBPublishAction extends Action {
     private FacebookClient facebookClient = null;
     private String accessToken = null;
     private String update = "false";
+    private String socialCampaignParam = "scid";
+    private UrlRewriteService urlRewriteService;
 
     @Override
     public ActionResult doExecute(HttpServletRequest httpServletRequest, RenderContext renderContext, Resource resource, JCRSessionWrapper jcrSessionWrapper, Map<String, List<String>> map, URLResolver urlResolver) throws Exception {
+        List<Parameter> params = new ArrayList<Parameter>();
         String apiPath = "me/feed";
         String message = null;
         JCRNodeWrapper liveContentLink = null;
@@ -51,22 +56,22 @@ public class FBPublishAction extends Action {
 
             if(update == "true" && currentNode.hasProperty("postId"))
                 apiPath = "/"+currentNode.getProperty("postId").getString();;
-
+            params.add(Parameter.with("message", message));
             if(currentNode.hasProperty("contentReferenced")){
                 JCRNodeWrapper contentLink = (JCRNodeWrapper) currentNode.getProperty("contentReferenced").getNode();
                 URLGenerator u = new URLGenerator(renderContext,resource);
-                String contentURL = Url.getServer(httpServletRequest)+ u.getBaseLive() + contentLink.getPath() + ".html";
+                String contentURL = urlRewriteService.rewriteOutbound(u.getBaseLive() + contentLink.getPath() + ".html",httpServletRequest,renderContext.getResponse());
+                contentURL = Url.getServer(httpServletRequest)+contentURL;
+                if(currentNode.isNodeType("jmix:socialMarketingCampaign") && currentNode.hasProperty("campaingID")){
+                    contentURL+="?"+socialCampaignParam+"="+currentNode.getProperty("campaingID").getString();
+                }
+                params.add(Parameter.with("link", contentURL));
 
-                publishMessageResponse =  facebookClient.publish(
-                        apiPath,
-                        FacebookType.class,
-                        Parameter.with("message", message),
-                        Parameter.with("link", contentURL)
-                );
-            }else{
-                publishMessageResponse =  facebookClient.publish(apiPath,FacebookType.class,
-                        Parameter.with("message", message));
             }
+
+            publishMessageResponse =  facebookClient.publish(apiPath,FacebookType.class,
+                    params.toArray(new Parameter[params.size()]));
+
             currentNode.setProperty("postId",publishMessageResponse.getId());
             currentNode.setProperty("published",true);
 
@@ -82,5 +87,9 @@ public class FBPublishAction extends Action {
 
     public String getUpdate() {
         return update;
+    }
+
+    public void setUrlRewriteService(UrlRewriteService urlRewriteService) {
+        this.urlRewriteService = urlRewriteService;
     }
 }

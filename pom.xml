@@ -63,13 +63,18 @@
     <developerConnection>scm:dummy:uri</developerConnection>
   </scm>
   <properties>
-    <jahia-depends>bootstrap3-components,default</jahia-depends>
+    <jahia-depends>bootstrap3-components,default,event</jahia-depends>
   </properties>
   <dependencies>
     <dependency>
       <groupId>com.restfb</groupId>
       <artifactId>restfb</artifactId>
       <version>1.23.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.twitter4j</groupId>
+      <artifactId>twitter4j-core</artifactId>
+      <version>4.0.4</version>
     </dependency>
   </dependencies>
   <repositories>

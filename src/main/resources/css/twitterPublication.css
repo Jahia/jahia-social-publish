@@ -1,0 +1,35 @@
+.twitterSocialActions{
+    height: 65px;
+    text-align: left;
+
+}
+.twitterSocialContent{
+    height: 55px;
+    border: 1px solid #e1e8ed;
+}
+
+.twitterSocial{
+    border: 1px solid #e1e8ed;
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+.twitterSocial b{
+    color: #0084B4 !important;
+}
+.actionsList{
+    margin-top: 45px;
+}
+
+.twitterPic{
+    height: 80px;
+}
+
+.itemSocialContentImg{
+    height: 150px;
+}
+
+.twitterSocialActionsImg{
+    height: 160px;
+}
+
