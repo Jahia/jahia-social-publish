@@ -1,13 +1,27 @@
-.itemSocialActions{
-    height: 55px;
+.facebookSocialActions{
+    height: 64px;
     text-align: left;
-
-}
-.itemSocialContent{
-    height: 45px;
-    border: 1px solid #e1e8ed;
 }
 
 .actionsList{
-    margin-top: 40px;
+    margin-top: 50px;
 }
+
+.facebookSocialContent{
+    height: 55px;
+    border: 1px solid #e1e8ed;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.facebookSocial{
+    border: 1px solid #e1e8ed;
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+.facebookSocial b{
+    color: #365899 !important;
+}
+

@@ -20,8 +20,12 @@
 <template:addResources type="css" resources="facebookPublication.css" />
 
 <c:set var="message" value="${currentNode.properties['socialFacebookMessage'].string}"/>
-<c:set var="contentReference" value="${currentNode.properties['contentReferenced'].node.path}"/>
-<div class="itemSocialContent">
+<c:if test="${fn:length(message) > 70}">
+    <c:set var="message" value="${fn:substring(message, 0, 70)}..."/>
+
+</c:if>
+<c:set var="contentReference" value="${currentNode.properties['contentReferenced'].node}"/>
+<div class="facebookSocial facebookSocialContent">
     <p><b><fmt:message key="facebook.message"/>:</b> ${message}</p>
-    <p><b><fmt:message key="facebook.content"/>:</b> ${contentReference}</p>
+    <p><b><fmt:message key="facebook.content"/>:</b> <a href="${contentReference.url}">${contentReference.path}</a> </p>
 </div>

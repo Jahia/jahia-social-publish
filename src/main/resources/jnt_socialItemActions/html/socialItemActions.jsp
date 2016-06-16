@@ -63,7 +63,7 @@
             data: "",
             dataType: 'html',
             success: function (html) {
-                alert("successful");
+                alert("<fmt:message key='publication.success'/>");
                 if(currentNode.hasClass('fbPublish')){
                     currentNode.parent().find('.fbUpdate').show();
                     currentNode.parent().find('.fbDelete').show();
@@ -77,7 +77,7 @@
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert("Erreur refresh");
+                alert("<fmt:message key='publication.error'/>");
             }
         });
     });

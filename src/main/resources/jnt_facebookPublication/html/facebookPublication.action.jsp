@@ -29,7 +29,7 @@
         <c:set var="hideUnpublishedButton" value="style='display: none;'"/>
     </c:otherwise>
 </c:choose>
-<div class="itemSocialActions" id="${id}">
+<div class="facebookSocialActions" id="${id}">
     <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
         <fmt:message key="publish.facebook.button"/>
     </button>
