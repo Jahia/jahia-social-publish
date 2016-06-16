@@ -46,7 +46,7 @@ public class FBPublishAction extends Action {
         JCRSiteNode currentSite = currentNode.getResolveSite();
         JCRSessionWrapper session = currentNode.getSession();
 
-        if(currentSite.isNodeType("jmix:socialPublishConfiguration")){
+        if(currentSite.isNodeType("jmix:facebookSocialPublishConfiguration")){
             accessToken = currentSite.getProperty("facebookToken").getString();
             facebookClient = new DefaultFacebookClient(accessToken, Version.VERSION_2_5);
 

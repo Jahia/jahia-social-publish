@@ -36,7 +36,7 @@ public class TwitterdeleteAction extends Action {
         JCRSiteNode currentSite = currentNode.getResolveSite();
         JCRSessionWrapper session = currentNode.getSession();
 
-        if(currentSite.isNodeType("jmix:socialPublishConfiguration")){
+        if(currentSite.isNodeType("jmix:twittersocialPublishConfiguration")){
             String twitterAPIKey = currentSite.getProperty("twitterAPIKey").getString();
             String twitterAPISecret = currentSite.getProperty("twitterAPISecret").getString();
             String twitterAccessToken  = currentSite.getProperty("twitterAccessToken").getString();

@@ -1,20 +1,20 @@
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 
-[jmix:socialPublishConfiguration] mixin
+[jmix:facebookSocialPublishConfiguration] mixin
  extends = jnt:virtualsite
  itemtype = options
  - facebookToken (string)
  - appID (string)
- - appSecret (string,text[password])
+ - appSecret (string, text[password])
 
-[jmix:TwittersocialPublishConfiguration] mixin
+[jmix:twittersocialPublishConfiguration] mixin
  extends = jnt:virtualsite
  itemtype = options
  - twitterAPIKey (string)
- - twitterAPISecret (string,text[password])
+ - twitterAPISecret (string, text[password])
  - twitterAccessToken (string)
- - twitterAccessTokenSecret (string,text[password])
+ - twitterAccessTokenSecret (string, text[password])
 
 [jnt:facebookPublication] > jnt:content, jmix:droppableContent
  - socialFacebookMessage (string)
@@ -43,5 +43,6 @@
 [jnt:facebookConfiguration] > jnt:content, jmix:droppableContent
 
 [jmix:socialMarketingCampaign] mixin
- extends = jnt:facebookPublication,jnt:twitterPublication
+ extends = jnt:facebookPublication, jnt:twitterPublication
  - campaingID (string)
+

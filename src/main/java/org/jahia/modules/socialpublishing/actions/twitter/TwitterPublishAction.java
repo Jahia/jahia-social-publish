@@ -51,7 +51,7 @@ public class TwitterPublishAction extends Action {
         JCRSessionWrapper session = currentNode.getSession();
         u = new URLGenerator(renderContext,resource);
 
-        if(currentSite.isNodeType("jmix:socialPublishConfiguration")){
+        if(currentSite.isNodeType("jmix:twittersocialPublishConfiguration")){
             String twitterAPIKey = currentSite.getProperty("twitterAPIKey").getString();
             String twitterAPISecret = currentSite.getProperty("twitterAPISecret").getString();
             String twitterAccessToken  = currentSite.getProperty("twitterAccessToken").getString();

@@ -31,7 +31,7 @@ public class FBDeleteAction extends Action {
         JCRNodeWrapper currentNode = renderContext.getMainResource().getNode();
         JCRSiteNode currentSite = currentNode.getResolveSite();
 
-        if(currentSite.isNodeType("jmix:socialPublishConfiguration")){
+        if(currentSite.isNodeType("jmix:facebookSocialPublishConfiguration")){
             accessToken = currentSite.getProperty("facebookToken").getString();
             facebookClient = new DefaultFacebookClient(accessToken, Version.VERSION_2_5);
             facebookClient.deleteObject(currentNode.getProperty("postId").getString());

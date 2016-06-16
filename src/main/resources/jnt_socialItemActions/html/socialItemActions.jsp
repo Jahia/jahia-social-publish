@@ -45,7 +45,7 @@
         </div>
         <c:if test="${not omitFormatting}"><div class="clear"></div></c:if>
         <c:if test="${not empty moduleMap.emptyListMessage and (renderContext.editMode or moduleMap.forceEmptyListMessageDisplay) and isEmpty}">
-            ${moduleMap.emptyListMessage}
+            <fmt:message key="socialpublication.enableArea"/>
         </c:if>
 
         <template:include view="hidden.footer"/>
@@ -63,7 +63,7 @@
             data: "",
             dataType: 'html',
             success: function (html) {
-                alert("<fmt:message key='publication.success'/>");
+                alert("<fmt:message key='socialpublication.success'/>");
                 if(currentNode.hasClass('fbPublish')){
                     currentNode.parent().find('.fbUpdate').show();
                     currentNode.parent().find('.fbDelete').show();
@@ -77,7 +77,7 @@
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert("<fmt:message key='publication.error'/>");
+                alert("<fmt:message key='socialpublication.error'/>");
             }
         });
     });

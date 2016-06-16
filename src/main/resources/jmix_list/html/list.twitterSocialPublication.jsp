@@ -39,7 +39,7 @@
         </div>
         <c:if test="${not omitFormatting}"><div class="clear"></div></c:if>
         <c:if test="${not empty moduleMap.emptyListMessage and (renderContext.editMode or moduleMap.forceEmptyListMessageDisplay) and isEmpty}">
-            ${moduleMap.emptyListMessage}
+            <fmt:message key="socialpublication.empty"/>
         </c:if>
         <c:if test="${moduleMap.editable and renderContext.editMode && !resourceReadOnly}">
             <template:module path="*" nodeTypes="jnt:twitterPublication"/>
