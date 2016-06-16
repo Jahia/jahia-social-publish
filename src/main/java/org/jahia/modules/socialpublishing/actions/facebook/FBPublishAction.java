@@ -76,6 +76,9 @@ public class FBPublishAction extends Action {
             currentNode.setProperty("published",true);
 
             currentNode.saveSession();
+        }else{
+            logger.error("Facebook API not configured");
+            return ActionResult.INTERNAL_ERROR;
         }
 
         return ActionResult.OK;

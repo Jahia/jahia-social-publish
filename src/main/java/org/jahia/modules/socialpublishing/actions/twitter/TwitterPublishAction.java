@@ -92,6 +92,9 @@ public class TwitterPublishAction extends Action {
             currentNode.setProperty("postId",status.getId());
             currentNode.setProperty("published",true);
             currentNode.saveSession();
+        }else{
+            logger.error("Twitter API not configured");
+            return ActionResult.INTERNAL_ERROR;
         }
 
         return ActionResult.OK;
@@ -101,7 +104,7 @@ public class TwitterPublishAction extends Action {
         String stageUrl = (isPage) ? u.getBaseLive() + node.getPath()+".html" : "/files/live" + node.getPath();
         String contentURL = urlRewriteService.rewriteOutbound(stageUrl,httpServletRequest,renderContext.getResponse());
         contentURL = Url.getServer(httpServletRequest)+contentURL;
-        logger.info("fileURL= "+contentURL);
+        logger.debug("fileURL= "+contentURL);
         return contentURL;
     }
 

@@ -53,6 +53,9 @@ public class TwitterdeleteAction extends Action {
             currentNode.setProperty("postId","");
             currentNode.setProperty("published",false);
             currentNode.saveSession();
+        }else{
+            logger.error("Twitter API not configured");
+            return ActionResult.INTERNAL_ERROR;
         }
 
         return ActionResult.OK;

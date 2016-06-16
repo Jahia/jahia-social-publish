@@ -35,6 +35,9 @@ public class FBDeleteAction extends Action {
             accessToken = currentSite.getProperty("facebookToken").getString();
             facebookClient = new DefaultFacebookClient(accessToken, Version.VERSION_2_5);
             facebookClient.deleteObject(currentNode.getProperty("postId").getString());
+        }else{
+            logger.error("Facebook API not configured");
+            return ActionResult.INTERNAL_ERROR;
         }
         currentNode.setProperty("published",false);
         currentNode.saveSession();
