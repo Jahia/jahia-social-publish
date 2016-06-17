@@ -18,7 +18,7 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:addResources type="css" resources="facebookPublication.css" />
-
+<c:set var="siteNode" value="${renderContext.mainResource.node.resolveSite}"/>
 <c:set var="id" value="fbActions${currentNode.identifier}"/>
 
 <c:choose>
@@ -30,16 +30,26 @@
     </c:otherwise>
 </c:choose>
 <div class="facebookSocialActions" id="${id}">
-    <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
-        <fmt:message key="publish.facebook.button"/>
-    </button>
+<c:choose>
+    <c:when test="${jcr:isNodeType(siteNode, 'jmix:facebookSocialPublishConfiguration')  and
+        siteNode.properties['facebookToken'] != null and
+        siteNode.properties['appID'] != null and
+        siteNode.properties['appSecret'] != null}">
+        <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
+            <fmt:message key="publish.facebook.button"/>
+        </button>
 
-    <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookUpdate.do'/>" class="facebookAction fbUpdate btn btn-default btn-u">
-        <fmt:message key="update.facebook.button"/>
-    </button>
+        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookUpdate.do'/>" class="facebookAction fbUpdate btn btn-default btn-u">
+            <fmt:message key="update.facebook.button"/>
+        </button>
 
-    <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
-        <fmt:message key="delete.facebook.button"/>
-    </button>
+        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
+            <fmt:message key="delete.facebook.button"/>
+        </button>
+    </c:when>
+    <c:otherwise>
+        <fmt:message key="socialpublication.APIconfiguration"/>
+    </c:otherwise>
+</c:choose>
 </div>
 

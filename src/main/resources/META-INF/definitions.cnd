@@ -40,8 +40,6 @@
 
 [jnt:socialItemActions] > jnt:content, jmix:bindedComponent, jmix:list, jmix:droppableContent
 
-[jnt:facebookConfiguration] > jnt:content, jmix:droppableContent
-
 [jmix:socialMarketingCampaign] mixin
  extends = jnt:facebookPublication, jnt:twitterPublication
  - campaingID (string)

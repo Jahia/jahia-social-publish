@@ -19,6 +19,8 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <template:addResources type="css" resources="twitterPublication.css" />
 <template:addResources type="javascript" resources="jquery.js"/>
+<c:set var="siteNode" value="${renderContext.mainResource.node.resolveSite}"/>
+
 <c:if test="${currentNode.properties['image'] != null}">
     <c:set var="imageClass" value="Img"/>
 </c:if>
@@ -33,13 +35,25 @@
         <c:set var="hideUnpublishedButton" value="style='display: none;'"/>
     </c:otherwise>
 </c:choose>
-<div class="twitterSocialActions${imageClass}" id="${id}">
-    <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
-        <fmt:message key="publish.twitter.button"/>
-    </button>
 
-    <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
-        <fmt:message key="delete.twitter.button"/>
-    </button>
+<div class="twitterSocialActions${imageClass}" id="${id}">
+<c:choose>
+    <c:when test="${jcr:isNodeType(siteNode, 'jmix:twittersocialPublishConfiguration') and
+        siteNode.properties['twitterAPIKey'] != null and
+        siteNode.properties['twitterAPISecret'] != null and
+        siteNode.properties['twitterAccessToken'] != null and
+        siteNode.properties['twitterAccessTokenSecret'] != null}">
+        <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
+            <fmt:message key="publish.twitter.button"/>
+        </button>
+
+        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
+            <fmt:message key="delete.twitter.button"/>
+        </button>
+    </c:when>
+    <c:otherwise>
+        <fmt:message key="socialpublication.APIconfiguration"/>
+    </c:otherwise>
+</c:choose>
 </div>
 
