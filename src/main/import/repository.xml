@@ -29,6 +29,14 @@
                             <thumbnail jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
                             <thumbnail2 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
                         </publish_x0020_to_x0020_Twitter.png>
+                        <publish_x0020_to_x0020_social.png j:height="16"
+                                                  j:width="16"
+                                                  jcr:mixinTypes="jmix:image"
+                                                  jcr:primaryType="jnt:file">
+                            <jcr:content jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+                            <thumbnail jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+                            <thumbnail2 jcr:mimeType="image/png" jcr:primaryType="jnt:resource"/>
+                        </publish_x0020_to_x0020_social.png>
                     </files>
                     <contents jcr:primaryType="jnt:contentFolder"/>
                     <news-social-template j:applyOn="jnt:news"
@@ -48,6 +56,7 @@
                                 jcr:mixinTypes="jmix:useUILocale"
                                 jcr:primaryType="jnt:template">
                         <social-publication j:hiddenTemplate="false"
+                                   j:icon="/modules/socialpublishing/templates/files/publish_x0020_to_x0020_social.png"
                                    j:view="siteSettings"
                                    jcr:primaryType="jnt:template">
                             <j:translation_en jcr:language="en"
@@ -68,10 +77,6 @@
                                                        gridClasses="col-md-2, col-md-6, col-md-4"
                                                        jcr:mixinTypes="bootstrap3mix:customColumns"
                                                        jcr:primaryType="bootstrap3nt:columns">
-                                        <section--container--row--grid-main jcr:primaryType="jnt:contentList"/>
-                                        <section--container--row--grid-side jcr:primaryType="jnt:contentList"/>
-                                        <section--container--row--grid-extra jcr:primaryType="jnt:contentList"/>
-                                        <section--container--row--grid-side1 jcr:primaryType="jnt:contentList"/>
                                         <section--container--row--grid-col1 jcr:primaryType="jnt:contentList">
                                             <facebook-social-publication-area j:areaView="socialPublication" jcr:primaryType="jnt:area"/>
                                         </section--container--row--grid-col1>
@@ -97,10 +102,6 @@
                                                        gridClasses="col-md-2, col-md-6, col-md-4"
                                                        jcr:mixinTypes="bootstrap3mix:customColumns"
                                                        jcr:primaryType="bootstrap3nt:columns">
-                                        <section--container--row--grid-main jcr:primaryType="jnt:contentList"/>
-                                        <section--container--row--grid-side jcr:primaryType="jnt:contentList"/>
-                                        <section--container--row--grid-extra jcr:primaryType="jnt:contentList"/>
-                                        <section--container--row--grid-side1 jcr:primaryType="jnt:contentList"/>
                                         <section--container--row--grid-col1 jcr:primaryType="jnt:contentList">
                                             <twitter-social-publication-area j:areaView="twitterSocialPublication" jcr:primaryType="jnt:area"/>
                                         </section--container--row--grid-col1>
