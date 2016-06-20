@@ -55,8 +55,10 @@ public class FBPublishAction extends Action {
                 message = currentNode.getDisplayableName();
 
             if(update == "true" && currentNode.hasProperty("postId"))
-                apiPath = "/"+currentNode.getProperty("postId").getString();;
+                apiPath = "/"+currentNode.getProperty("postId").getString();
+
             params.add(Parameter.with("message", message));
+
             if(currentNode.hasProperty("contentReferenced")){
                 JCRNodeWrapper contentLink = (JCRNodeWrapper) currentNode.getProperty("contentReferenced").getNode();
                 URLGenerator u = new URLGenerator(renderContext,resource);

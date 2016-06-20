@@ -12,6 +12,7 @@
     </bean>
     <bean class="org.jahia.modules.socialpublishing.actions.facebook.FBPublishAction">
         <property name="name" value="facebookUpdate"/>
+        <property name="urlRewriteService" ref="UrlRewriteService"/>
         <property name="update" value="true"/>
     </bean>
 
