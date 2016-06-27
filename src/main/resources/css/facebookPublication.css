@@ -1,10 +1,10 @@
 .facebookSocialActions{
-    height: 64px;
+    height: 65px;
     text-align: left;
 }
 
 .actionsList{
-    margin-top: 50px;
+    margin-top: 45px;
 }
 
 .facebookSocialContent{
@@ -23,5 +23,11 @@
 }
 .facebookSocial b{
     color: #365899 !important;
+}
+.left-img{
+    float:left;
+    height: 35px;
+    width: 35px;
+    margin-right: 10px;
 }
 

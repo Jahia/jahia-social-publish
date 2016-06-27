@@ -25,7 +25,7 @@
 </c:if>
 
 <div class="twitterSocial twitterSocialContent${imageClass}">
-    <p><b><fmt:message key="twitter.message"/><i class="fa fa-twitter"/></b></p>
+    <div class="left-img"><img class="img-responsive" src="${url.currentModule}/icons/twitter-official.png"></div>
     <p>${message} <a href="${contentReference.url}">${contentReference.path}</a> </p>
     <c:if test="${currentNode.properties['image'] != null}">
         <img class="twitterPic" src="${currentNode.properties['image'].node.url}">

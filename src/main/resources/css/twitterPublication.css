@@ -30,6 +30,12 @@
 }
 
 .twitterSocialActionsImg{
-    height: 160px;
+    height: 135px;
 }
 
+.left-img{
+    float:left;
+    height: 35px;
+    width: 35px;
+    margin-right: 10px;
+}

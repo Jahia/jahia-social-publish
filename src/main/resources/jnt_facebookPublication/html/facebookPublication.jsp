@@ -26,6 +26,7 @@
 </c:if>
 <c:set var="contentReference" value="${currentNode.properties['contentReferenced'].node}"/>
 <div class="facebookSocial facebookSocialContent">
-    <p><b><fmt:message key="facebook.message"/>:</b> ${message}</p>
+    <div class="left-img"><img class="img-responsive" src="${url.currentModule}/icons/facebook-official.png"></div>
+    <p>${message}</p>
     <p><b><fmt:message key="facebook.content"/>:</b> <a href="${contentReference.url}">${contentReference.path}</a> </p>
 </div>
