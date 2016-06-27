@@ -58,7 +58,7 @@ public class TwitterdeleteAction extends Action {
             return ActionResult.INTERNAL_ERROR;
         }
 
-        return ActionResult.OK;
+        return ActionResult.OK_JSON;
     }
 
 }

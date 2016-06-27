@@ -54,26 +54,47 @@
 
 
 <script>
-    $(".facebookAction").unbind().click(function() {
+    $(".socialAction").unbind().click(function() {
         currentNode = $(this);
         id = currentNode.parent().attr('id');
         $.ajax({
             type: 'POST',
             url: $(this).attr('action'),
             data: "",
-            dataType: 'html',
-            success: function (html) {
+            dataType: 'json',
+            success: function (data) {
                 alert("<fmt:message key='socialpublication.success'/>");
                 if(currentNode.hasClass('fbPublish')){
                     currentNode.parent().find('.fbUpdate').show();
                     currentNode.parent().find('.fbDelete').show();
+                    if(data.postId['0'] != null){
+                        var fbview = currentNode.parent().find('.fbView');
+                        fbview.attr("href", "http://www.facebook.com/" + data.postId['0']);
+                        fbview.show();
+                    }
                     currentNode.hide();
                 }
                 if(currentNode.hasClass('fbDelete')){
                     currentNode.parent().find('.fbPublish').show();
                     currentNode.parent().find('.fbUpdate').hide();
+                    currentNode.parent().find('.fbView').hide();
                     currentNode.hide();
                 }
+                if(currentNode.hasClass('twitterPublish')){
+                    currentNode.parent().find('.twitterDelete').show();
+                    if(data.tweetId['0'] != null){
+                        var twitterView = currentNode.parent().find('.twitterView');
+                        twitterView.attr("href", "http://twitter.com/statuses/" + data.tweetId['0']);
+                        twitterView.show();
+                    }
+                    currentNode.hide();
+                }
+                if(currentNode.hasClass('twitterDelete')){
+                    currentNode.parent().find('.twitterPublish').show();
+                     currentNode.parent().find('.twitterView').hide();
+                    currentNode.hide();
+                }
+
 
             },
             error: function (jqXHR, textStatus, errorThrown) {

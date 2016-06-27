@@ -14,6 +14,7 @@ import org.jahia.services.render.URLGenerator;
 import org.jahia.services.render.URLResolver;
 import org.jahia.services.seo.urlrewrite.UrlRewriteService;
 import org.jahia.utils.Url;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import twitter4j.Status;
@@ -50,6 +51,7 @@ public class TwitterPublishAction extends Action {
         JCRSiteNode currentSite = currentNode.getResolveSite();
         JCRSessionWrapper session = currentNode.getSession();
         u = new URLGenerator(renderContext,resource);
+        ActionResult actionresult = ActionResult.OK_JSON;
 
         if(currentSite.isNodeType("jmix:twittersocialPublishConfiguration")){
             String twitterAPIKey = currentSite.getProperty("twitterAPIKey").getString();
@@ -92,12 +94,16 @@ public class TwitterPublishAction extends Action {
             currentNode.setProperty("postId",status.getId());
             currentNode.setProperty("published",true);
             currentNode.saveSession();
+            JSONObject jsonAnswer = new JSONObject();
+            jsonAnswer.append("tweetId", String.valueOf(status.getId()));
+
+            actionresult.setJson(jsonAnswer);
         }else{
             logger.error("Twitter API not configured");
             return ActionResult.INTERNAL_ERROR;
         }
 
-        return ActionResult.OK;
+        return actionresult;
     }
 
     public String getLiveURL(JCRNodeWrapper node, HttpServletRequest httpServletRequest, RenderContext renderContext, boolean isPage) throws ServletException, IOException, InvocationTargetException {

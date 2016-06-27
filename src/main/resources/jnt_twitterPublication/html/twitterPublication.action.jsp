@@ -43,13 +43,17 @@
         siteNode.properties['twitterAPISecret'] != null and
         siteNode.properties['twitterAccessToken'] != null and
         siteNode.properties['twitterAccessTokenSecret'] != null}">
-        <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
+        <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterPublish.do'/>" class="socialAction twitterPublish btn btn-default btn-u" >
             <fmt:message key="publish.twitter.button"/>
         </button>
 
-        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
+        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.twitterDelete.do'/>" class="socialAction twitterDelete btn btn-default btn-u" t>
             <fmt:message key="delete.twitter.button"/>
         </button>
+
+        <a ${hidePublishedButton}  class="btn btn-default btn-u twitterView" href="http://twitter.com/statuses/${currentNode.properties.postId.string}"  target="_blank">
+            <fmt:message key="view.twitter.button"/>
+        </a>
     </c:when>
     <c:otherwise>
         <fmt:message key="socialpublication.APIconfiguration"/>

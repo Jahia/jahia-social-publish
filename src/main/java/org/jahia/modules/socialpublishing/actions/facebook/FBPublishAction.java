@@ -18,6 +18,7 @@ import org.jahia.services.render.URLGenerator;
 import org.jahia.services.render.URLResolver;
 import org.jahia.services.seo.urlrewrite.UrlRewriteService;
 import org.jahia.utils.Url;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +46,7 @@ public class FBPublishAction extends Action {
         JCRNodeWrapper currentNode = renderContext.getMainResource().getNode();
         JCRSiteNode currentSite = currentNode.getResolveSite();
         JCRSessionWrapper session = currentNode.getSession();
+        ActionResult actionresult = ActionResult.OK_JSON;
 
         if(currentSite.isNodeType("jmix:facebookSocialPublishConfiguration")){
             accessToken = currentSite.getProperty("facebookToken").getString();
@@ -78,12 +80,15 @@ public class FBPublishAction extends Action {
             currentNode.setProperty("published",true);
 
             currentNode.saveSession();
+            JSONObject jsonAnswer = new JSONObject();
+            jsonAnswer.append("postId", publishMessageResponse.getId());
+
+            actionresult.setJson(jsonAnswer);
         }else{
             logger.error("Facebook API not configured");
             return ActionResult.INTERNAL_ERROR;
         }
-
-        return ActionResult.OK;
+        return actionresult;
     }
 
     public void setUpdate(String update) {

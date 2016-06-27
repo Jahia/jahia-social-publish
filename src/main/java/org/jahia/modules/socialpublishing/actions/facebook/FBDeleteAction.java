@@ -40,7 +40,8 @@ public class FBDeleteAction extends Action {
             return ActionResult.INTERNAL_ERROR;
         }
         currentNode.setProperty("published",false);
+        currentNode.setProperty("postId","");
         currentNode.saveSession();
-        return ActionResult.OK;
+        return ActionResult.OK_JSON;
     }
 }

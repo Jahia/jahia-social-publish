@@ -35,17 +35,22 @@
         siteNode.properties['facebookToken'] != null and
         siteNode.properties['appID'] != null and
         siteNode.properties['appSecret'] != null}">
-        <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookPublish.do'/>" class="facebookAction fbPublish btn btn-default btn-u" >
+        <button ${hideUnpublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookPublish.do'/>" class="socialAction fbPublish btn btn-default btn-u" >
             <fmt:message key="publish.facebook.button"/>
         </button>
 
-        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookUpdate.do'/>" class="facebookAction fbUpdate btn btn-default btn-u">
+        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookUpdate.do'/>" class="socialAction fbUpdate btn btn-default btn-u">
             <fmt:message key="update.facebook.button"/>
         </button>
 
-        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookDelete.do'/>" class="facebookAction fbDelete btn btn-default btn-u" t>
+        <button ${hidePublishedButton} action="<c:url value='${url.base}${currentNode.path}.facebookDelete.do'/>" class="socialAction fbDelete btn btn-default btn-u" t>
             <fmt:message key="delete.facebook.button"/>
         </button>
+
+        <a ${hidePublishedButton}  class="btn btn-default btn-u fbView" href="http://www.facebook.com/${currentNode.properties.postId.string}"  target="_blank">
+            <fmt:message key="view.facebook.button"/>
+        </a>
+
     </c:when>
     <c:otherwise>
         <fmt:message key="socialpublication.APIconfiguration"/>
