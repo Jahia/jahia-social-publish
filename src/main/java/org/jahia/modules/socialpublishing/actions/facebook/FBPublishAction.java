@@ -56,7 +56,7 @@ public class FBPublishAction extends Action {
             if(message == null)
                 message = currentNode.getDisplayableName();
 
-            if(update == "true" && currentNode.hasProperty("postId"))
+            if("true".equals(update) && currentNode.hasProperty("postId"))
                 apiPath = "/"+currentNode.getProperty("postId").getString();
 
             params.add(Parameter.with("message", message));
