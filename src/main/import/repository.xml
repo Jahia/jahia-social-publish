@@ -40,9 +40,9 @@
                     </files>
                     <contents jcr:primaryType="jnt:contentFolder"/>
                     <news-social-template j:applyOn="jnt:news"
-                                  j:defaultTemplate="true"
+                                  j:defaultTemplate="false"
                                   j:hiddenTemplate="false"
-                                  j:priority="200"
+                                  j:priority="100"
                                   jcr:primaryType="jnt:contentTemplate">
                         <j:translation_en jcr:language="en"
                                  jcr:mixinTypes="mix:title"
